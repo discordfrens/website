@@ -107,7 +107,9 @@ export default function Scrapbook() {
                               alt="Scrapbook Author Avatar"
                             />
                           </picture>
-                          <span className="">{author_name}</span>
+                          <span className="text-sm font-semibold">
+                            {author_name}
+                          </span>
                         </Link>
                       )}
 
