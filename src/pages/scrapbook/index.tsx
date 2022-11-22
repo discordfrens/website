@@ -3,7 +3,7 @@ import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import dayjs from 'dayjs';
-import { Post } from '../../../types';
+import { Post } from '../../types'
 
 export default function Scrapbook() {
   const supabase = useSupabaseClient();
@@ -28,7 +28,7 @@ export default function Scrapbook() {
 
     if (error) return alert('An error occurred');
 
-    setPosts(data);
+    setPosts(data as Post[]);
     setLoading(false);
   }
 
