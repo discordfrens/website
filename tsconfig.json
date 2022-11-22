@@ -19,7 +19,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "pages/scrapbook/index.jsx"
+    "src/pages/api/scrapbook/index.jsx"
   ],
   "exclude": ["node_modules"]
 }

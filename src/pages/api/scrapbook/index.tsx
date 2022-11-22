@@ -1,13 +1,15 @@
+//@ts-ignore
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import dayjs from 'dayjs';
+import { Post } from '../../../types';
 
 export default function Scrapbook() {
   const supabase = useSupabaseClient();
 
   let [loading, setLoading] = useState(true);
-  let [posts, setPosts] = useState();
+  let [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
     fetchPosts();
@@ -33,12 +35,12 @@ export default function Scrapbook() {
   return (
     <main className="mx-auto my-16 max-w-7xl p-10">
       {loading ? (
-        <p>Loading...</p>
+        <p className="animate-pulse">...</p>
       ) : (
         <>
           <h1 className="mb-6 text-4xl font-bold tracking-tight">Scrapbook</h1>
           <section className="columns-4 gap-4 space-y-4 md:columns-4">
-            {posts &&
+            {posts && posts.length > 0 ? (
               posts.map(
                 ({
                   id,
@@ -115,8 +117,16 @@ export default function Scrapbook() {
 
                       <div>
                         {content ? (
-                          <p className="mb-3 text-gray-100">{content}</p>
-                        ) : null}
+                          <>
+                            {content.length > 250 ? (
+                              <p className="mb-3 text-gray-100">
+                                {content.slice(0, 250)}...
+                              </p>
+                            ) : (
+                              <p className="mb-3 text-gray-100">{content}</p>
+                            )}
+                          </>
+                        ) : <></>}
                       </div>
 
                       <time className="text-sm text-gray-300">
@@ -125,7 +135,10 @@ export default function Scrapbook() {
                     </div>
                   </article>
                 )
-              )}
+              )
+            ) : (
+              <p>No posts found...</p>
+            )}
           </section>
         </>
       )}
