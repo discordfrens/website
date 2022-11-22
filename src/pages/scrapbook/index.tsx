@@ -1,5 +1,6 @@
 //@ts-ignore
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
+import { Modal } from '../../components/Modal';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { format } from 'date-fns';
@@ -8,8 +9,14 @@ import { Post } from '../../types';
 export default function Scrapbook() {
     const supabase = useSupabaseClient();
 
-    let [loading, setLoading] = useState(true);
-    let [posts, setPosts] = useState<Post[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [posts, setPosts] = useState<Post[]>([]);
+    const [isOpen, setIsOpen] = useState(false);
+    const [modalData, setModalData] = useState({
+        content: '',
+        author: '',
+        avatar: '',
+    });
 
     useEffect(() => {
         fetchPosts();
@@ -32,9 +39,14 @@ export default function Scrapbook() {
         setLoading(false);
     }
 
+    console.log(posts);
     return (
         <main className="mx-auto my-16 max-w-7xl p-10">
-            {loading ? (
+            {isOpen && (
+                <Modal open={isOpen} onClose={setIsOpen} data={modalData} />
+            )}
+
+            {loading && posts.length ? (
                 <p className="animate-pulse">...</p>
             ) : (
                 <>
@@ -55,7 +67,7 @@ export default function Scrapbook() {
                                 }) => (
                                     <article
                                         key={message_id}
-                                        className="relative rounded-lg bg-neutral-800 shadow-md shadow-black/20 overflow-hidden"
+                                        className="relative overflow-hidden rounded-lg bg-neutral-800 shadow-md shadow-black/20"
                                     >
                                         {media &&
                                             media.map(
@@ -133,12 +145,29 @@ export default function Scrapbook() {
                                                     <>
                                                         {content.length >
                                                         250 ? (
-                                                            <p className="mb-3 text-gray-100">
+                                                            <p className="mb-3 break-words text-gray-100">
                                                                 {content.slice(
                                                                     0,
                                                                     250
                                                                 )}
-                                                                ...
+                                                                ...{' '}
+                                                                <a
+                                                                    className="cursor-pointer font-bold text-[#3772ff] hover:underline"
+                                                                    onClick={() => {
+                                                                        setModalData(
+                                                                            {
+                                                                                avatar: author_avatar,
+                                                                                author: author_name,
+                                                                                content,
+                                                                            }
+                                                                        );
+                                                                        setIsOpen(
+                                                                            true
+                                                                        );
+                                                                    }}
+                                                                >
+                                                                    read more
+                                                                </a>
                                                             </p>
                                                         ) : (
                                                             <p className="mb-3 text-gray-100">
