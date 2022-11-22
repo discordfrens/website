@@ -9,7 +9,6 @@ specifiers:
   '@types/react-dom': 18.0.9
   autoprefixer: ^10.4.13
   date-fns: ^2.29.3
-  dayjs: ^1.11.6
   eslint: 8.28.0
   eslint-config-next: 13.0.4
   next: 13.0.4
@@ -29,7 +28,6 @@ dependencies:
   '@types/react': 18.0.25
   '@types/react-dom': 18.0.9
   date-fns: 2.29.3
-  dayjs: 1.11.6
   eslint: 8.28.0
   eslint-config-next: 13.0.4_hsf322ms6xhhd4b5ne6lb74y4a
   next: 13.0.4_biqbaboplfbrettd7655fr4n2y
@@ -742,10 +740,6 @@ packages:
   /date-fns/2.29.3:
     resolution: {integrity: sha512-dDCnyH2WnnKusqvZZ6+jA1O51Ibt8ZMRNkDZdyAyK4YfbDwa/cEmuztzG5pk6hqlp9aSBPYcjOlktquahGwGeA==}
     engines: {node: '>=0.11'}
-    dev: false
-
-  /dayjs/1.11.6:
-    resolution: {integrity: sha512-zZbY5giJAinCG+7AGaw0wIhNZ6J8AhWuSXKvuc1KAyMiRsvGQWqh4L+MomvhdAYjN+lqvVCMq1I41e3YHvXkyQ==}
     dev: false
 
   /debug/2.6.9:

@@ -2,7 +2,7 @@
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import dayjs from 'dayjs';
+import { format } from 'date-fns';
 import { Post } from '../../types'
 
 export default function Scrapbook() {
@@ -130,7 +130,7 @@ export default function Scrapbook() {
                       </div>
 
                       <time className="text-sm text-gray-300">
-                        {dayjs(created_at.toString()).format('MMMM D, YYYY')}
+                        {format(new Date(created_at), 'MMM do, Y')}
                       </time>
                     </div>
                   </article>
