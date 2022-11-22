@@ -41,7 +41,7 @@ export default function Scrapbook() {
                         className="rounded-lg bg-neutral-800 relative shadow-md shadow-black/20"
                     >
                         {media && media.map(({ url, type, height, size, width}) => (
-                            <div>
+                            <div key={url}>
                                 {type === 'video/mp4' ? (
                                     <video className="w-full rounded-t-lg object-cover" controls>
                                         <source src={url} type={type} />
