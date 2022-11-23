@@ -1,6 +1,7 @@
 import { Dialog } from '@headlessui/react';
 import { ModalBackdrop } from './ModalBackdrop';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect } from 'react';
 
 interface Props {
     onClose: React.Dispatch<React.SetStateAction<boolean>>;
@@ -13,6 +14,8 @@ interface ModalData {
     author: string;
     avatar: string;
 }
+
+// TODO: Fix this component later.
 
 export function Modal({ data, open, onClose }: Props) {
     return (

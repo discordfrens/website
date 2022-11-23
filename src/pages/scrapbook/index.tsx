@@ -5,14 +5,18 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { format } from 'date-fns';
 import { Post } from '../../types';
+import { useRouter } from 'next/router';
 
 export default function Scrapbook() {
     const supabase = useSupabaseClient();
+
+    const router = useRouter();
 
     const [loading, setLoading] = useState(true);
     const [posts, setPosts] = useState<Post[]>([]);
     const [isOpen, setIsOpen] = useState(false);
     const [modalData, setModalData] = useState({
+        messageId: '',
         content: '',
         author: '',
         avatar: '',
@@ -39,11 +43,33 @@ export default function Scrapbook() {
         setLoading(false);
     }
 
-    console.log(posts);
+    useEffect(() => {
+        const post = posts.find(
+            (post) => Number(post.message_id) === Number(router.query.post_id)
+        );
+
+        if (post) {
+            setModalData({
+                messageId: post.message_id,
+                content: post.content,
+                author: post.author_name,
+                avatar: post.author_avatar,
+            });
+            setIsOpen(true);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [posts]);
+
     return (
         <main className="mx-auto my-16 max-w-7xl p-10">
             {isOpen && (
-                <Modal open={isOpen} onClose={setIsOpen} data={modalData} />
+                <Modal
+                    open={
+                        isOpen || router.query.post_id === modalData.messageId
+                    }
+                    onClose={setIsOpen}
+                    data={modalData}
+                />
             )}
 
             {loading && posts.length ? (
@@ -154,8 +180,18 @@ export default function Scrapbook() {
                                                                 <a
                                                                     className="cursor-pointer font-bold text-[#3772ff] hover:underline"
                                                                     onClick={() => {
+                                                                        router.push(
+                                                                            `/scrapbook?post_id=${message_id}`,
+                                                                            undefined,
+                                                                            {
+                                                                                shallow:
+                                                                                    true,
+                                                                            }
+                                                                        );
                                                                         setModalData(
                                                                             {
+                                                                                messageId:
+                                                                                    message_id,
                                                                                 avatar: author_avatar,
                                                                                 author: author_name,
                                                                                 content,
