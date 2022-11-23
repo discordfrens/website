@@ -53,7 +53,10 @@ export function Modal({ data, open, onClose }: Props) {
                     </p>
                 </Dialog.Panel>
             </Dialog>
-            <ModalBackdrop open={open} onClose={onClose} />
+            <div
+                className="absolute top-0 left-0 bottom-0 right-0 h-screen w-full bg-black bg-opacity-25"
+                onClick={() => onClose(false)}
+            ></div>
         </AnimatePresence>
     );
 }
