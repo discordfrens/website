@@ -2,10 +2,10 @@
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { Modal } from '../../components/Modal';
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { format } from 'date-fns';
-import { Post } from '../../types';
 import { useRouter } from 'next/router';
+import { Post } from '../../types';
+import { format } from 'date-fns';
+import Link from 'next/link';
 
 export default function Scrapbook() {
     const supabase = useSupabaseClient();
@@ -55,6 +55,7 @@ export default function Scrapbook() {
                 author: post.author_name,
                 avatar: post.author_avatar,
             });
+
             setIsOpen(true);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
