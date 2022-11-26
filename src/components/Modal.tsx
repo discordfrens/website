@@ -28,7 +28,7 @@ export function Modal({ data, open, onClose }: Props) {
                 }}
             >
                 <Dialog.Panel
-                    className="absolute top-1/2 left-1/2 z-10 flex max-h-[40rem] w-5/6 -translate-x-1/2 -translate-y-1/2 transform flex-col justify-center
+                    className="fixed top-1/2 left-1/2 z-10 flex max-h-[40rem] w-5/6 -translate-x-1/2 -translate-y-1/2 transform flex-col justify-center
                     rounded-lg bg-neutral-800 p-6 shadow-md shadow-black/20 md:w-[40rem]"
                 >
                     <motion.div
@@ -65,7 +65,7 @@ export function Modal({ data, open, onClose }: Props) {
                 </Dialog.Panel>
             </Dialog>
             <div
-                className="absolute top-0 left-0 bottom-0 right-0 z-10 h-full w-full bg-black bg-opacity-25"
+                className="fixed top-0 left-0 bottom-0 right-0 z-10 h-full w-full bg-black bg-opacity-25"
                 onClick={() => onClose(false)}
             ></div>
         </AnimatePresence>
