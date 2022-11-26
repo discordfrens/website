@@ -1,16 +1,22 @@
-import { DefaultUi } from "../../types";
+import { DefaultUi } from '../../types';
 
 type Props = {
-  children: string;
-  href?: string;
-} & DefaultUi
-
-const Button = ({ children, className, href, onClick, style }: Props) => {
-  return <a href={href} onClick={() =>{
-    if(onClick){
-      onClick()
-    }
-  }} className={`${className} py-1 px-2 transition ease-out duration-200 cursor-pointer rounded border hover:bg-[#353535] hover:border-[#515156] border-neutral-700 bg-neutral-800`} style={style}>{children}</a>
-}
+    href?: string;
+    children: string;
+    icon?: JSX.Element
+} & DefaultUi;
+const Button = ({ children, className, href, onClick, style, icon }: Props) => {
+    return (
+        <a
+            href={href}
+            onClick={() => (onClick ? onClick() : null)}
+            style={style}
+            className={`${className} ${icon ? `hover:pr-3.5 pr-[0px] flex flex-row gap-2` : ""} items-center btn bounce cursor-pointer rounded-md border border-border bg-foreground py-[4px] px-4 hover:border-border-light hover:bg-border`}
+        >
+            {children}
+            {icon}
+        </a>
+    );
+};
 
 export default Button;

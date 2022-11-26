@@ -27,6 +27,16 @@ const nextConfig = {
                 source: '/learn',
                 permanent: false,
             },
+            {
+                destination: '/api/auth/logout',
+                source: '/logout',
+                permanent: false,
+            },
+            {
+                destination: '/api/auth',
+                source: '/login',
+                permanent: false,
+            },
         ];
     },
 };

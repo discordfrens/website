@@ -20,6 +20,6 @@
         "**/*.ts",
         "**/*.tsx",
         "src/pages/api/scrapbook/index.jsx"
-    ],
+, "src/pages/profile.tsx"    ],
     "exclude": ["node_modules"]
 }

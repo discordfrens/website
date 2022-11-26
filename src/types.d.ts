@@ -22,3 +22,19 @@ export type DefaultUi = {
     className?: string;
     style?: CSSProperties
 }
+
+export type O<T=any> = {
+    [key: string]: T
+}
+
+export type Infraction = {
+    type: "mute" | "warn" | "ban" | "kick" | "unmute" | "unban";
+    id: string;
+    reason: string;
+    timestamp: number;
+    moderatorId: string;
+    length?: number;
+    inf_id: string;
+    moderator_name: string;
+    moderator_avatar: string;
+}

@@ -29,7 +29,7 @@ export function Modal({ data, open, onClose }: Props) {
             >
                 <Dialog.Panel
                     className="fixed top-1/2 left-1/2 z-10 flex max-h-[40rem] w-5/6 -translate-x-1/2 -translate-y-1/2 transform flex-col justify-center
-                    rounded-lg bg-neutral-800 p-6 shadow-md shadow-black/20 md:w-[40rem]"
+                    rounded-lg border border-border bg-foreground p-6 shadow-md shadow-black/20 md:w-[40rem]"
                 >
                     <motion.div
                         animate={{ opacity: 1, scale: 1 }}

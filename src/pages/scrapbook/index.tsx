@@ -94,7 +94,7 @@ export default function Scrapbook() {
                                 }) => (
                                     <article
                                         key={message_id}
-                                        className="relative overflow-hidden rounded-lg bg-neutral-800 shadow-md shadow-black/20"
+                                        className="relative overflow-hidden rounded-lg border border-border bg-foreground shadow-md shadow-black/20"
                                     >
                                         {media &&
                                             media.map(

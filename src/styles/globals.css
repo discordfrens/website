@@ -3,27 +3,42 @@
 @tailwind utilities;
 
 body {
-    @apply bg-neutral-900 text-white;
+    @apply bg-background text-white;
+}
+
+.bounce {
+    transition: .3s cubic-bezier(0.22, 0.12, 0.02, 1.26);
 }
 
 /* width */
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 3px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-    background: #313131;
+    @apply bg-border;
     border-radius: 10px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #1e1e1e;
+    @apply bg-border-mid;
     border-radius: 10px;
 }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-    background: #0f0f0f 737;
+
+.btn i {
+    transition: .3s cubic-bezier(0.22, 0.12, 0.02, 1.26);
+    font-size: 13px;
+    width: 13px;
+    height: 13px;
+    opacity: 0;
+    scale: 0;
+}
+
+
+.btn:hover > i {
+    opacity: 1;
+    scale: 1;
 }
