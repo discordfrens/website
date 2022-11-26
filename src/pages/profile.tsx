@@ -11,11 +11,13 @@ type Props = {
 const Profile = ({ user }: Props) => {
     const supabase = useSupabaseClient();
     const [infractions, setInfractions] = useState<Infraction[]>([]);
-    const [search, setSearch] = useState("")
+    const [search, setSearch] = useState('');
     const [loading, setLoading] = useState(true);
+
     useEffect(() => {
         fetchInfractions();
     }, []);
+
     async function fetchInfractions() {
         setLoading(true);
         const { error, data } = await supabase.from('infractions').select();
@@ -23,6 +25,7 @@ const Profile = ({ user }: Props) => {
         setInfractions(data as Infraction[]);
         setLoading(false);
     }
+
     return (
         <div className="mx-auto mt-[4rem] max-w-2xl">
             <div className="mb-3 flex flex-row items-center gap-3 rounded-md border border-border-mid bg-foreground py-2 px-2">
@@ -58,41 +61,61 @@ const Profile = ({ user }: Props) => {
                 </div>
             </div>
             <div className="flex flex-row gap-2">
-              <input type="text" className='bg-foreground border border-border-mid outline-none py-1 px-3 rounded-md mb-2' placeholder='Search for a warning id...' value={search} onChange={(e) => setSearch(e.target.value)} />
+                <input
+                    type="text"
+                    className="mb-2 rounded-md border border-border-mid bg-foreground py-1 px-3 outline-none"
+                    placeholder="Search for a warning id..."
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                />
             </div>
             {loading ? (
                 <p>...</p>
             ) : (
                 <div className="flex flex-col gap-2">
-                    {infractions.filter(f => search ? f.inf_id.includes(search) || f.reason.toLowerCase().includes(search.toLowerCase()) : true).map((infraction) => {
-                        return (
-                            <div className="relative min-h-[100px] rounded-md border border-border-mid bg-foreground p-3">
-                                <div className="abosulte flex flex-row gap-2">
-                                    <div className="h-10 flex items-center rounded-md border border-border-light bg-foreground-light py-1 px-2">
-                                        <p>{infraction.inf_id}</p>
-                                    </div>
-                                    <div className="h-10 flex items-center rounded-md border border-border-light bg-foreground-light py-1 px-2">
-                                        <p>{infraction.type}</p>
-                                    </div>
-                                    <div onClick={() => {
-                                      window.location.href = `https://discord.com/users/${infraction.moderatorId}`
-                                    }} className="h-10 flex items-center cursor-pointer rounded-md border border-border-light bg-foreground-light py-1 px-2">
-                                        <div className="flex flex-row gap-2 items-center">
-                                            <img
-                                            className='h-7 w-7 rounded-full border border-border-light'
-                                                src={ 
-                                                    infraction.moderator_avatar
-                                                }
-                                                alt=""
-                                            />
-                                            <p className='text-lg mb-1'>{infraction.moderator_name}</p>
+                    {infractions
+                        .filter((f) =>
+                            search
+                                ? f.inf_id.includes(search) ||
+                                  f.reason
+                                      .toLowerCase()
+                                      .includes(search.toLowerCase())
+                                : true
+                        )
+                        .map((infraction) => {
+                            return (
+                                <div className="relative min-h-[100px] rounded-md border border-border-mid bg-foreground p-3">
+                                    <div className="abosulte flex flex-row gap-2">
+                                        <div className="flex h-10 items-center rounded-md border border-border-light bg-foreground-light py-1 px-2">
+                                            <p>{infraction.inf_id}</p>
+                                        </div>
+                                        <div className="flex h-10 items-center rounded-md border border-border-light bg-foreground-light py-1 px-2">
+                                            <p>{infraction.type}</p>
+                                        </div>
+                                        <div
+                                            onClick={() => {
+                                                window.location.href = `https://discord.com/users/${infraction.moderatorId}`;
+                                            }}
+                                            className="flex h-10 cursor-pointer items-center rounded-md border border-border-light bg-foreground-light py-1 px-2"
+                                        >
+                                            <div className="flex flex-row items-center gap-2">
+                                                <img
+                                                    className="h-7 w-7 rounded-full border border-border-light"
+                                                    src={
+                                                        infraction.moderator_avatar
+                                                    }
+                                                    alt=""
+                                                />
+                                                <p className="mb-1 text-lg">
+                                                    {infraction.moderator_name}
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
+                                    <p className="mt-2">{infraction.reason}</p>
                                 </div>
-                                <p className='mt-2'>{infraction.reason}</p>
-                            </div>
-                        );
-                    })}
+                            );
+                        })}
                 </div>
             )}
         </div>

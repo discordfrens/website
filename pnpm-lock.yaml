@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@headlessui/react': ^1.7.4
+  '@next/font': ^13.0.5
   '@supabase/auth-helpers-nextjs': ^0.5.2
   '@supabase/auth-helpers-react': ^0.3.1
   '@supabase/supabase-js': ^2.1.0
@@ -32,6 +33,7 @@ specifiers:
 
 dependencies:
   '@headlessui/react': 1.7.4_biqbaboplfbrettd7655fr4n2y
+  '@next/font': 13.0.5
   '@supabase/auth-helpers-nextjs': 0.5.2_zj6vbgpit7u2xp5t7lhhtyhq6e
   '@supabase/auth-helpers-react': 0.3.1_zj6vbgpit7u2xp5t7lhhtyhq6e
   '@supabase/supabase-js': 2.1.0
@@ -196,6 +198,10 @@ packages:
     resolution: {integrity: sha512-jZ4urKT+aO9QHm3ttihrIQscQISDSKK8isAom750+EySn9o3LCSkTdPGBtvBqY7Yku+NqhfQempR5J58DqTaVg==}
     dependencies:
       glob: 7.1.7
+    dev: false
+
+  /@next/font/13.0.5:
+    resolution: {integrity: sha512-NrP4B8pxwerrkkuG/m7MQv0ks89Kk4Lc0kzbiRaYX+Xb0coDaw+I9T+g42aOHf8j8ta1vtKqb5XE1+troZ4CoQ==}
     dev: false
 
   /@next/swc-android-arm-eabi/13.0.4:

@@ -7,6 +7,10 @@ import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs';
 //@ts-ignore
 import { SessionContextProvider, Session } from '@supabase/auth-helpers-react';
 
+import { Syne } from '@next/font/google';
+
+const syne = Syne({ subsets: ['latin'] });
+
 function MyApp({
     Component,
     pageProps,
@@ -20,7 +24,9 @@ function MyApp({
             supabaseClient={supabaseClient}
             initialSession={pageProps.initialSession}
         >
-            <Component {...pageProps} />
+            <main className={syne.className}>
+                <Component {...pageProps} />
+            </main>
         </SessionContextProvider>
     );
 }
