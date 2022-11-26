@@ -9,9 +9,9 @@ import { serialize } from 'cookie';
 import dayjs from 'dayjs';
 import { sign } from 'jsonwebtoken';
 
-const { DISCORD_CLIENT_ID, DISCORD_CLIENT_SECRET, JWT_SECRET } =
+const { DISCORD_CLIENT_ID, DISCORD_CLIENT_SECRET, JWT_SECRET, URL } =
     process.env as O<string>;
-const REDIRECT_URL = `http://localhost:5233/api/auth/callback`;
+const REDIRECT_URL = `${URL}/api/auth/callback`;
 const SCOPES = ['identify'].join(' ');
 const OAUTH_URL = urlcat(`https://discord.com/api/oauth2/authorize`, {
     client_id: DISCORD_CLIENT_ID,
