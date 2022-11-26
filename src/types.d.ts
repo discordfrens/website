@@ -15,3 +15,10 @@ export type PostMedia = {
     size: number;
     width: number;
 };
+
+
+export type DefaultUi = {
+    onClick?: () => any;
+    className?: string;
+    style?: CSSProperties
+}
